@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Comet Clobber">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="Comet Clobber '94 - a browser tribute to a 1994 Windows game. Not affiliated.">
+<title>Comet Clobber '94</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="safe-probe"></div>
+<div id="frame">
+  <div id="titlebar"><span class="sysbox">&#9644;</span><span class="ttl">Comet Clobber '94</span><span class="minmax">&#9660;&#9650;</span></div>
+  <div id="toolbar">
+    <button data-cmd="p1">1</button><button data-cmd="p2">2</button><button data-cmd="p3">3</button><button data-cmd="p4">4</button>
+    <button data-cmd="start" class="wide" id="btn-start">Start</button>
+    <button data-cmd="players" class="wide">Players</button>
+    <button data-cmd="game" class="wide">Game</button>
+    <button data-cmd="pause" class="wide" id="btn-pause">Pause</button>
+    <button data-cmd="sound" class="wide" id="btn-sound">Sound</button>
+    <button data-cmd="music" class="wide" id="btn-music">Music</button>
+    <button data-cmd="help" class="wide">Help</button>
+    <button data-cmd="about" class="wide">About</button>
+  </div>
+  <div id="screen"><canvas id="cv" width="640" height="480"></canvas></div>
+</div>
+<div id="touch"></div>
+<div id="loading">Loading&hellip;</div>
+
+<div id="initials" class="hidden">
+  <div class="dlg">
+    <div class="cap">Enter your initials</div>
+    <div class="body"><input id="init-input" maxlength="3" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false" enterkeyhint="done"><button id="init-ok">OK</button></div>
+  </div>
+</div>
+
+<div id="modal" class="hidden"><div class="dlg" id="dlg"></div></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

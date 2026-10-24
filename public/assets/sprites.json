@@ -1,0 +1,118 @@
+{
+ "scale": 3,
+ "ship": {
+  "file": "ship.png",
+  "fw": 135,
+  "fh": 135,
+  "frames": 64,
+  "cols": 8,
+  "orig": [
+   45,
+   45
+  ]
+ },
+ "shield": {
+  "file": "shield.png",
+  "fw": 135,
+  "fh": 135,
+  "frames": 1,
+  "cols": 1,
+  "orig": [
+   45,
+   45
+  ]
+ },
+ "saucer": {
+  "file": "saucer.png",
+  "fw": 120,
+  "fh": 108,
+  "frames": 8,
+  "cols": 8,
+  "orig": [
+   40,
+   36
+  ]
+ },
+ "pest": {
+  "file": "pest.png",
+  "fw": 42,
+  "fh": 42,
+  "frames": 32,
+  "cols": 8,
+  "orig": [
+   14,
+   14
+  ]
+ },
+ "rocks": {
+  "files": [
+   "rock1.png",
+   "rock2.png",
+   "rock3.png",
+   "rock4.png",
+   "rock5.png",
+   "rock6.png",
+   "rock7.png",
+   "rock8.png"
+  ],
+  "sizes": [
+   64,
+   32,
+   16
+  ],
+  "radius": [
+   0.898,
+   0.933,
+   0.936,
+   0.936,
+   0.829,
+   0.936,
+   0.935,
+   0.921
+  ]
+ },
+ "explosion": {
+  "file": "explosion.png",
+  "fw": 256,
+  "fh": 256,
+  "frames": 5,
+  "cols": 5,
+  "orig": [
+   128,
+   128
+  ]
+ },
+ "thrust": {
+  "file": "thrust.png",
+  "fw": 42,
+  "fh": 42,
+  "frames": 2,
+  "cols": 2,
+  "orig": [
+   14,
+   14
+  ]
+ },
+ "torpedo": {
+  "file": "torpedo.png",
+  "fw": 24,
+  "fh": 24,
+  "frames": 4,
+  "cols": 4,
+  "orig": [
+   8,
+   8
+  ]
+ },
+ "atorpedo": {
+  "file": "atorpedo.png",
+  "fw": 27,
+  "fh": 27,
+  "frames": 1,
+  "cols": 1,
+  "orig": [
+   9,
+   9
+  ]
+ }
+}

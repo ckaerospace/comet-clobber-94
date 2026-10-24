@@ -1,0 +1,69 @@
+:root { --sat: env(safe-area-inset-top, 0px); --sar: env(safe-area-inset-right, 0px); --sab: env(safe-area-inset-bottom, 0px); --sal: env(safe-area-inset-left, 0px); }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000; color: #000;
+  overscroll-behavior: none; touch-action: none; -webkit-user-select: none; user-select: none;
+  -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%;
+  font-family: "MS Sans Serif", Tahoma, Arial, Helvetica, sans-serif; }
+body { position: fixed; inset: 0; }
+#safe-probe { position: fixed; top: var(--sat); right: var(--sar); bottom: var(--sab); left: var(--sal); pointer-events: none; visibility: hidden; }
+#frame { position: absolute; background: #c0c0c0; border: 1px solid #000; display: flex; flex-direction: column; visibility: hidden; }
+#titlebar { background: #0000a8; color: #fff; font-weight: bold; display: flex; align-items: center; justify-content: space-between; overflow: hidden; white-space: nowrap; }
+#titlebar .sysbox, #titlebar .minmax { background: #c0c0c0; color: #000; height: 100%; display: flex; align-items: center; padding: 0 .35em; font-size: .8em; border: 1px solid #000; }
+#titlebar .ttl { flex: 1; text-align: center; }
+#toolbar { display: flex; background: #c0c0c0; border-bottom: 1px solid #000; }
+#toolbar button { flex: 1 1 0; min-width: 0; margin: 2px 1px; padding: 0; background: #c0c0c0; color: #000; font: inherit;
+  border: 1px solid #000; box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080, inset 2px 2px 0 #dfdfdf; border-radius: 0;
+  cursor: pointer; white-space: nowrap; overflow: hidden; touch-action: manipulation; }
+#toolbar button.wide { flex: 2 1 0; }
+#toolbar button:active, #toolbar button.on { box-shadow: inset 1px 1px 0 #808080, inset -1px -1px 0 #fff; padding-top: 1px; }
+#toolbar button.off { color: #808080; }
+#toolbar button span.u, .dlg span.u { text-decoration: underline; }
+#screen { position: relative; background: #000; overflow: hidden; }
+#cv { display: block; width: 100%; height: 100%; image-rendering: auto; }
+#loading { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; color: #c0a000; font: bold 28px Arial, sans-serif; background: #000; }
+#loading.gone { display: none; }
+.hidden { display: none !important; }
+
+/* touch controls */
+#touch { position: fixed; inset: 0; pointer-events: none; display: none; z-index: 5; }
+body.touch #touch { display: block; }
+#touch .t-zone { position: absolute; pointer-events: none; }
+body.playing #touch .t-zone { pointer-events: auto; }
+.t-stick-base, .t-stick-knob { position: absolute; border-radius: 50%; pointer-events: none; opacity: .35; transition: opacity .1s; }
+.t-stick-base { border: 2px solid rgba(160,200,255,.8); background: radial-gradient(circle, rgba(60,80,140,.25), rgba(20,30,60,.45)); }
+.t-stick-knob { background: radial-gradient(circle at 35% 30%, #e8f0ff, #6a7fb8 60%, #2a3560); box-shadow: 0 0 8px rgba(120,160,255,.5); }
+.t-stick-base.on, .t-stick-knob.on { opacity: .8; }
+body:not(.playing) .t-stick-base, body:not(.playing) .t-stick-knob { opacity: .12; }
+.t-btn { position: absolute; border-radius: 50%; pointer-events: auto; display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,.9); font: bold 11px Arial, sans-serif; letter-spacing: .02em; touch-action: none; opacity: .62; }
+.t-btn span { pointer-events: none; }
+.t-fire { background: radial-gradient(circle at 35% 30%, #ff9a7a, #c0201a 55%, #600a08); border: 2px solid rgba(255,200,180,.7); font-size: 15px; }
+.t-sp { background: radial-gradient(circle at 35% 30%, #a0f0ff, #1a8ab0 55%, #0a3448); border: 2px solid rgba(180,240,255,.6); font-size: 9px; }
+.t-btn.down { opacity: 1; filter: brightness(1.35); transform: scale(.94); }
+.t-sp.dim { opacity: .28; filter: grayscale(.8); }
+body:not(.playing) .t-btn { opacity: .25; }
+
+/* Win 3.1 style dialogs */
+#modal, #initials { position: fixed; inset: 0; z-index: 20; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.35);
+  padding: max(8px, var(--sat)) max(8px, var(--sar)) max(8px, var(--sab)) max(8px, var(--sal)); touch-action: auto; }
+.dlg { background: #c0c0c0; border: 1px solid #000; box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080, 4px 4px 0 rgba(0,0,0,.5);
+  max-width: 100%; max-height: 100%; display: flex; flex-direction: column; font-size: 13px; min-width: 260px; -webkit-user-select: text; user-select: text; }
+.dlg .cap { background: #0000a8; color: #fff; font-weight: bold; text-align: center; padding: 3px 8px; flex: none; }
+.dlg .body { padding: 10px 12px; overflow: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
+.dlg .row { display: flex; gap: 10px; flex-wrap: wrap; }
+.dlg fieldset { border: 1px solid #808080; box-shadow: 1px 1px 0 #fff; margin: 6px 0; padding: 4px 8px 8px; min-width: 0; }
+.dlg legend { padding: 0 3px; }
+.dlg label { display: flex; align-items: center; gap: 6px; padding: 3px 0; cursor: pointer; }
+.dlg input[type=range] { width: 150px; }
+.dlg .btns { display: flex; justify-content: flex-end; gap: 8px; padding: 8px 12px 10px; flex: none; }
+.dlg button { background: #c0c0c0; border: 1px solid #000; box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080; padding: 5px 14px; font: inherit; min-width: 70px; color: #000; touch-action: manipulation; }
+.dlg button:active, .dlg button.on { box-shadow: inset 1px 1px 0 #808080, inset -1px -1px 0 #fff; }
+.dlg .tabs { display: flex; gap: 4px; margin-bottom: 6px; }
+.dlg .tabs button { min-width: 0; padding: 4px 10px; }
+.dlg .spec { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; align-items: center; }
+.dlg h3 { margin: 8px 0 4px; font-size: 14px; }
+.dlg p, .dlg li { margin: 4px 0; line-height: 1.35; }
+.dlg ul { padding-left: 18px; margin: 4px 0; }
+.dlg kbd { background: #e0e0e0; border: 1px solid #808080; padding: 0 3px; font-size: 12px; }
+#initials .body { display: flex; gap: 8px; align-items: center; justify-content: center; }
+#init-input { font: bold 28px "Times New Roman", serif; width: 5em; text-align: center; text-transform: uppercase; letter-spacing: .3em; padding: 4px; border: 2px inset #808080; }

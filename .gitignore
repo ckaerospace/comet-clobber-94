@@ -1,0 +1,7 @@
+ref/
+node_modules/
+test-results/
+playwright-report/
+screenshots/live/
+__pycache__/
+*.pyc

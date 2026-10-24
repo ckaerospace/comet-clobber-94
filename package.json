@@ -1,0 +1,13 @@
+{
+  "name": "comet-clobber-94",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Browser remake tribute to a 1994 Windows game. Not affiliated.",
+  "scripts": {
+    "serve": "node tools/serve.mjs public 8080",
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1"
+  }
+}
